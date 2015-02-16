@@ -7,7 +7,7 @@ Joueur::Joueur(int valeur, int nombrePions) {
 }
 
 Coordonnee* Joueur::jouer(int largeur, int hauteur) {
-	return new Coordonnee(rand() % largeur, rand() % hauteur);
+	return new Coordonnee(rand() % largeur, rand() % hauteur, largeur);
 }
 
 Pion* Joueur::popPion() {
@@ -18,6 +18,6 @@ Pion* Joueur::popPion() {
 }
 
 int Joueur::getNbPions() {
-	return 3;
+	return pions.size();
 }
 

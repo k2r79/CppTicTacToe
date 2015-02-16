@@ -15,12 +15,13 @@ void Jeu::start() {
 
 	while (!jeuFini()) {
 		for (int i = 0; i < joueurs.size(); i++) {
-			std::cout << "Joueur " << i + 1 << "\n";
+			std::cout << "Joueur " << i + 1 << " | " << joueurs.at(i)->getNbPions() << " pions\n";
 
 			Pion* pionJoueur = joueurs.at(i)->popPion();
-			Coordonnee* coordonneesJoueur = 0;
+			Coordonnee* coordonneesJoueur;
 			do {
-				coordonneesJoueur = joueurs[i]->jouer(grille->getLargeur(), grille->getHauteur());
+				coordonneesJoueur = joueurs.at(i)->jouer(grille->getLargeur(), grille->getHauteur());
+				std::cout << "  Position => (" << coordonneesJoueur->getX() << " : " << coordonneesJoueur->getY() << ") => " << coordonneesJoueur->toIndex() << "\n";
 			} while (!grille->positionnerPion(coordonneesJoueur, pionJoueur));
 		}
 	}

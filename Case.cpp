@@ -9,7 +9,7 @@ Pion* Case::getPion() {
 }
 
 bool Case::setPion(Pion* pion) {
-	if (this->pion != 0) {
+	if (this->pion) {
 		return false;
 	}
 

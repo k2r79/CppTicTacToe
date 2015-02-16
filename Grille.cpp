@@ -11,7 +11,7 @@ Grille::Grille(int largeur, int hauteur) {
 void Grille::genererCases() {
 	for (int x = 0; x < largeur; x++) {
 		for (int y = 0; y < hauteur; y++) {
-			cases[Coordonnee::toIndex(x, y)] = new Case();
+			cases[Coordonnee::toIndex(x, y, largeur)] = new Case();
 		}
 	}
 }
@@ -29,11 +29,11 @@ int Grille::getHauteur() {
 }
 
 bool Grille::remplie() {
-	/*for (int indexCase = 0; indexCase < sizeof(*cases); indexCase++) {
-		if (cases[indexCase]->getPion() != 0) {
+	for (int indexCase = 0; indexCase < largeur * hauteur; indexCase++) {
+		if (!cases[indexCase]->getPion()) {
 			return false;
 		}
-	}*/
+	}
 
-	return false;
+	return true;
 }
