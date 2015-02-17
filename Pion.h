@@ -11,6 +11,7 @@
 class Pion {
 	public:
 		Pion(int valeur);
+		int getValeur();
 
 	private:
 		int valeur;

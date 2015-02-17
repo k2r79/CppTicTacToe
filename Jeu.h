@@ -14,8 +14,10 @@ class Jeu {
 
 	private:
 		std::vector<Joueur*> joueurs;
+		Joueur* gagnant;
 		Grille *grille;
 		bool jeuFini();
+		int checkGagnant(Coordonnee* coordonnee, int valeur);
 };
 
 #endif /* JEU_H_ */

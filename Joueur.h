@@ -12,9 +12,11 @@ class Joueur {
 		Coordonnee* jouer(int largeur, int hauteur);
 		Pion* popPion();
 		int getNbPions();
+		int getValeur();
 
 	private:
 		std::queue<Pion*> pions;
+		int valeur;
 };
 
 #endif /* JOUEUR_H_ */

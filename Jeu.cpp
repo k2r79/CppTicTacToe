@@ -23,6 +23,8 @@ void Jeu::start() {
 				coordonneesJoueur = joueurs.at(i)->jouer(grille->getLargeur(), grille->getHauteur());
 				std::cout << "  Position => (" << coordonneesJoueur->getX() << " : " << coordonneesJoueur->getY() << ") => " << coordonneesJoueur->toIndex() << "\n";
 			} while (!grille->positionnerPion(coordonneesJoueur, pionJoueur));
+
+			checkGagnant(coordonneesJoueur, joueurs.at(i)->getValeur());
 		}
 	}
 
@@ -30,6 +32,22 @@ void Jeu::start() {
 }
 
 bool Jeu::jeuFini() {
-	return grille->remplie();
+	return grille->remplie() || gagnant;
+}
+
+int Jeu::checkGagnant(Coordonnee* coordonneeJoueur, int valeurJoueur) {
+	int nombrePions[joueurs.size()];
+
+	bool isGagnant = true;
+	for (int i = 0; i < grille->getLargeur() && isGagnant; i++) {
+		Coordonnee* coordonnee = new Coordonnee(coordonneeJoueur->getX(), i, grille->getLargeur());
+
+		int valeurCase = grille->getPionAt(coordonnee)->getValeur();
+		if (valeurCase != valeurJoueur) {
+			isGagnant = false;
+		}
+	}
+
+	return 0;
 }
 

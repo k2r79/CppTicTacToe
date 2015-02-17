@@ -11,3 +11,6 @@ Pion::Pion(int valeur) {
 	this->valeur = valeur;
 }
 
+int Pion::getValeur() {
+	return valeur;
+}

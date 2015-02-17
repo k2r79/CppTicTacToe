@@ -12,6 +12,7 @@ class Grille {
 		int getHauteur();
 		bool positionnerPion(Coordonnee* coordonnee, Pion* pion);
 		bool remplie();
+		Pion* getPionAt(Coordonnee* coordonnee);
 
 	private:
 		int largeur;

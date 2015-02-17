@@ -37,3 +37,7 @@ bool Grille::remplie() {
 
 	return true;
 }
+
+Pion* Grille::getPionAt(Coordonnee* coordonnee) {
+	return cases[coordonnee->toIndex()]->getPion();
+}

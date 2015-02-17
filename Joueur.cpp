@@ -4,6 +4,8 @@ Joueur::Joueur(int valeur, int nombrePions) {
 	for (int i = 0; i < nombrePions; i++) {
 		pions.push(new Pion(valeur));
 	}
+
+	this->valeur = valeur;
 }
 
 Coordonnee* Joueur::jouer(int largeur, int hauteur) {
@@ -19,5 +21,9 @@ Pion* Joueur::popPion() {
 
 int Joueur::getNbPions() {
 	return pions.size();
+}
+
+int Joueur::getValeur() {
+	return valeur;
 }
 
