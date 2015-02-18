@@ -30,6 +30,8 @@ void Jeu::start() {
 			gagnant = joueurs.at(joueurIndex);
 		}
 
+		grille->afficher();
+
 		joueurIndex = ++joueurIndex % joueurs.size();
 	}
 
