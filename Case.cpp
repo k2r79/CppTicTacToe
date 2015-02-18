@@ -1,19 +1,14 @@
 #include "Case.h"
+#include <cstdlib>
 
 Case::Case() {
-	this->pion = 0;
+	this->pion = NULL;
 }
 
 Pion* Case::getPion() {
 	return pion;
 }
 
-bool Case::setPion(Pion* pion) {
-	if (this->pion) {
-		return false;
-	}
-
+void Case::setPion(Pion* pion) {
 	this->pion = pion;
-
-	return true;
 }

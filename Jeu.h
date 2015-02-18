@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <cstdlib>
 #include "Joueur.h"
 #include "Grille.h"
 #include "Coordonnee.h"
@@ -17,7 +18,9 @@ class Jeu {
 		Joueur* gagnant;
 		Grille *grille;
 		bool jeuFini();
-		int checkGagnant(Coordonnee* coordonnee, int valeur);
+		bool checkGagnant(Coordonnee* coordonnee, int valeur);
+		bool checkColonne(Coordonnee* coordonnee, int valeur);
+		bool checkLigne(Coordonnee* coordonnee, int valeur);
 };
 
 #endif /* JEU_H_ */

@@ -17,7 +17,13 @@ void Grille::genererCases() {
 }
 
 bool Grille::positionnerPion(Coordonnee* coordonnee, Pion* pion) {
-	return cases[coordonnee->toIndex()]->setPion(pion);
+	if (getPionAt(coordonnee)) {
+		return false;
+	}
+
+	cases[coordonnee->toIndex()]->setPion(pion);
+
+	return true;
 }
 
 int Grille::getLargeur() {
