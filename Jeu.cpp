@@ -5,7 +5,7 @@ Jeu::Jeu(int nombreJoueurs) {
 	std::cout << "Création des joueurs...\n";
 
 	for (int i = 0; i < nombreJoueurs; i++) {
-		joueurs.push_back(new Joueur(i, 3));
+		joueurs.push_back(new Joueur(i, 9));
 	}
 
 	grille = new Grille(3, 3);
@@ -23,7 +23,7 @@ void Jeu::start() {
 		Coordonnee* coordonneesJoueur;
 		do {
 			coordonneesJoueur = joueurs.at(joueurIndex)->jouer(grille->getLargeur(), grille->getHauteur());
-			std::cout << "  Position => (" << coordonneesJoueur->getX() << " : " << coordonneesJoueur->getY() << ") => " << coordonneesJoueur->toIndex() << "\n";
+			std::cout << "  Position => (" << coordonneesJoueur->getX() << " : " << coordonneesJoueur->getY() << ")\n";
 		} while (!grille->positionnerPion(coordonneesJoueur, pionJoueur));
 
 		if (checkGagnant(coordonneesJoueur, joueurs.at(joueurIndex)->getValeur())) {
@@ -53,7 +53,7 @@ bool Jeu::checkColonne(Coordonnee* coordonneeJoueur, int valeurJoueur) {
 	for (int i = 0; i < grille->getLargeur() && nombrePions < grille->getHauteur(); i++) {
 		nombrePions = 0;
 
-		Coordonnee* coordonnee = new Coordonnee(coordonneeJoueur->getX(), i, grille->getLargeur());
+		Coordonnee* coordonnee = new Coordonnee(coordonneeJoueur->getX(), i);
 
 		Pion* pionCase = grille->getPionAt(coordonnee);
 		if (pionCase) {
@@ -72,7 +72,7 @@ bool Jeu::checkLigne(Coordonnee* coordonneeJoueur, int valeurJoueur) {
 	for (int i = 0; i < grille->getHauteur() && nombrePions < grille->getLargeur(); i++) {
 		nombrePions = 0;
 
-		Coordonnee* coordonnee = new Coordonnee(i, coordonneeJoueur->getY(), grille->getLargeur());
+		Coordonnee* coordonnee = new Coordonnee(i, coordonneeJoueur->getY());
 
 		Pion* pionCase = grille->getPionAt(coordonnee);
 		if (pionCase) {

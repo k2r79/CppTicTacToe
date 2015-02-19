@@ -21,7 +21,7 @@ class Grille {
 	private:
 		int largeur;
 		int hauteur;
-		Case *cases[];
+		Case **cases;
 		void genererCases();
 };
 

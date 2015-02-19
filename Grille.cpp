@@ -3,16 +3,14 @@
 Grille::Grille(int largeur, int hauteur) {
 	this->largeur = largeur;
 	this->hauteur = hauteur;
-	this->cases[largeur * hauteur] = new Case();
+	cases = new Case*[largeur];
 
 	genererCases();
 }
 
 void Grille::genererCases() {
 	for (int x = 0; x < largeur; x++) {
-		for (int y = 0; y < hauteur; y++) {
-			cases[Coordonnee::toIndex(x, y, largeur)] = new Case();
-		}
+		cases[x] = new Case[hauteur];
 	}
 }
 
@@ -21,7 +19,7 @@ bool Grille::positionnerPion(Coordonnee* coordonnee, Pion* pion) {
 		return false;
 	}
 
-	cases[coordonnee->toIndex()]->setPion(pion);
+	cases[coordonnee->getX()][coordonnee->getY()].setPion(pion);
 
 	return true;
 }
@@ -35,9 +33,11 @@ int Grille::getHauteur() {
 }
 
 bool Grille::remplie() {
-	for (int indexCase = 0; indexCase < largeur * hauteur; indexCase++) {
-		if (!cases[indexCase]->getPion()) {
-			return false;
+	for (int x = 0; x < largeur; x++) {
+		for (int y = 0; y < hauteur; y++) {
+			if (!cases[x][y].getPion()) {
+				return false;
+			}
 		}
 	}
 
@@ -45,7 +45,7 @@ bool Grille::remplie() {
 }
 
 Pion* Grille::getPionAt(Coordonnee* coordonnee) {
-	return cases[coordonnee->toIndex()]->getPion();
+	return cases[coordonnee->getX()][coordonnee->getY()].getPion();
 }
 
 void Grille::afficher() {
@@ -60,7 +60,7 @@ void Grille::afficher() {
 
 		std::cout << "|";
 		for (int j = 0; j < largeur; j++) {
-			Coordonnee* coordonnee = new Coordonnee(j, i, largeur);
+			Coordonnee* coordonnee = new Coordonnee(j, i);
 			int valeur = getPionAt(coordonnee) ? getPionAt(coordonnee)->getValeur() : -1;
 
 			std::cout << " " << (valeur == -1 ? " " : Utils::intToString(valeur)) << " |";

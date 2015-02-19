@@ -1,17 +1,8 @@
 #include "Coordonnee.h"
 
-Coordonnee::Coordonnee(int x, int y, int largeur) {
+Coordonnee::Coordonnee(int x, int y) {
 	this->x = x;
 	this->y = y;
-	this->largeur = largeur;
-}
-
-int Coordonnee::toIndex() {
-	return toIndex(x, y, largeur);
-}
-
-int Coordonnee::toIndex(int x, int y, int largeur) {
-	return (y * largeur) + x;
 }
 
 int Coordonnee::getX() {

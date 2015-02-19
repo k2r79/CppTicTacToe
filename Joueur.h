@@ -2,9 +2,10 @@
 #define JOUEUR_H_
 
 #include <stdlib.h>
-#include <queue>
+#include <stack>
 #include "Pion.h"
 #include "Coordonnee.h"
+#include "Utils.h"
 
 class Joueur {
 	public:
@@ -15,7 +16,7 @@ class Joueur {
 		int getValeur();
 
 	private:
-		std::queue<Pion*> pions;
+		std::stack<Pion*> pions;
 		int valeur;
 };
 

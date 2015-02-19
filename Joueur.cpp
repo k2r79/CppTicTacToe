@@ -1,5 +1,4 @@
 #include "Joueur.h"
-#include "Utils.h"
 
 Joueur::Joueur(int valeur, int nombrePions) {
 	for (int i = 0; i < nombrePions; i++) {
@@ -10,14 +9,14 @@ Joueur::Joueur(int valeur, int nombrePions) {
 }
 
 Coordonnee* Joueur::jouer(int largeur, int hauteur) {
-	return new Coordonnee(Utils::generateRandomInt(0, largeur), Utils::generateRandomInt(0, hauteur), largeur);
+	return new Coordonnee(Utils::generateRandomInt(0, largeur), Utils::generateRandomInt(0, hauteur));
 }
 
 Pion* Joueur::popPion() {
-	Pion* frontPion = pions.front();
+	Pion* topPion = pions.top();
 	pions.pop();
 
-	return frontPion;
+	return topPion;
 }
 
 int Joueur::getNbPions() {
