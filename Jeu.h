@@ -21,6 +21,8 @@ class Jeu {
 		bool checkGagnant(Coordonnee* coordonnee, int valeur);
 		bool checkColonne(Coordonnee* coordonnee, int valeur);
 		bool checkLigne(Coordonnee* coordonnee, int valeur);
+		bool checkDiagonaleGauche(int valeur);
+		bool checkDiagonaleDroite(int valeur);
 };
 
 #endif /* JEU_H_ */

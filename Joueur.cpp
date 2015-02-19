@@ -9,7 +9,7 @@ Joueur::Joueur(int valeur, int nombrePions) {
 }
 
 Coordonnee* Joueur::jouer(int largeur, int hauteur) {
-	return new Coordonnee(Utils::generateRandomInt(0, largeur), Utils::generateRandomInt(0, hauteur));
+	return new Coordonnee(Utils::promptUserForNumber("x: "), Utils::promptUserForNumber("y: "));
 }
 
 Pion* Joueur::popPion() {

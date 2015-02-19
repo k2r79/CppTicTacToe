@@ -45,14 +45,17 @@ bool Jeu::jeuFini() {
 
 bool Jeu::checkGagnant(Coordonnee* coordonneeJoueur, int valeurJoueur) {
 	return checkColonne(coordonneeJoueur, valeurJoueur)
-			|| checkLigne(coordonneeJoueur, valeurJoueur);
+			|| checkLigne(coordonneeJoueur, valeurJoueur)
+			|| (coordonneeJoueur->getX() == coordonneeJoueur->getY()
+				&& (checkDiagonaleGauche(valeurJoueur)
+					|| checkDiagonaleDroite(valeurJoueur)
+				)
+			);
 }
 
 bool Jeu::checkColonne(Coordonnee* coordonneeJoueur, int valeurJoueur) {
-	int nombrePions;
+	int nombrePions = 0;
 	for (int i = 0; i < grille->getLargeur() && nombrePions < grille->getHauteur(); i++) {
-		nombrePions = 0;
-
 		Coordonnee* coordonnee = new Coordonnee(coordonneeJoueur->getX(), i);
 
 		Pion* pionCase = grille->getPionAt(coordonnee);
@@ -68,10 +71,8 @@ bool Jeu::checkColonne(Coordonnee* coordonneeJoueur, int valeurJoueur) {
 }
 
 bool Jeu::checkLigne(Coordonnee* coordonneeJoueur, int valeurJoueur) {
-	int nombrePions;
+	int nombrePions = 0;
 	for (int i = 0; i < grille->getHauteur() && nombrePions < grille->getLargeur(); i++) {
-		nombrePions = 0;
-
 		Coordonnee* coordonnee = new Coordonnee(i, coordonneeJoueur->getY());
 
 		Pion* pionCase = grille->getPionAt(coordonnee);
@@ -86,5 +87,36 @@ bool Jeu::checkLigne(Coordonnee* coordonneeJoueur, int valeurJoueur) {
 	return nombrePions == grille->getLargeur() ? true : false;
 }
 
+bool Jeu::checkDiagonaleGauche(int valeurJoueur) {
+	int nombrePions = 0;
+	for (int offset = 0; offset < grille->getLargeur(); offset++) {
+		Coordonnee* coordonnee = new Coordonnee(offset, offset);
 
+		Pion* pionCase = grille->getPionAt(coordonnee);
+		if (pionCase) {
+			int valeurCase = pionCase->getValeur();
+			if (valeurCase == valeurJoueur) {
+				nombrePions++;
+			}
+		}
+	}
 
+	return nombrePions == std::min(grille->getLargeur(), grille->getHauteur()) ? true : false;
+}
+
+bool Jeu::checkDiagonaleDroite(int valeurJoueur) {
+	int nombrePions = 0;
+	for (int offset = 0; offset < grille->getLargeur(); offset++) {
+		Coordonnee* coordonnee = new Coordonnee(grille->getLargeur() - 1 - offset, offset);
+
+		Pion* pionCase = grille->getPionAt(coordonnee);
+		if (pionCase) {
+			int valeurCase = pionCase->getValeur();
+			if (valeurCase == valeurJoueur) {
+				nombrePions++;
+			}
+		}
+	}
+
+	return nombrePions == std::min(grille->getLargeur(), grille->getHauteur()) ? true : false;
+}

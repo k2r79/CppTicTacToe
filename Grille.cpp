@@ -73,8 +73,6 @@ void Grille::afficher() {
 		}
 
 	}
-	std::cout << "\n";
 
-	std::cout << "\n";
-	std::cout << "-----";
+	std::cout << "\n\n";
 }
